@@ -9,3 +9,6 @@
 .idea
 .project
 .classpath
+
+# Ignore Files created by MacOs
+.DS_Store

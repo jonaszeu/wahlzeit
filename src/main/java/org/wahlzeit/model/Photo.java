@@ -121,7 +121,12 @@ public class Photo extends DataObject {
 	 * The default type is jpg
 	 */
 	protected String ending = "jpg";
-	
+
+	/**
+	 * The location for Photo. Default value is null.
+	 */
+	protected Location location = null;
+
 	/**
 	 *
 	 */
@@ -146,6 +151,20 @@ public class Photo extends DataObject {
 		id = myId;
 
 		incWriteCount();
+	}
+
+	/**
+	 * @methodtype get
+	 */
+	public Location getLocation(){
+		return this.location;
+	}
+
+	/**
+	 * @methodtype set
+	 */
+	public void setLocation(Location location){
+		this.location = location;
 	}
 
 	/**
