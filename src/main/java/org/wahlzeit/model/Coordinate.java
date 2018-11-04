@@ -7,7 +7,7 @@ package org.wahlzeit.model;
  *
  * Date: 23.10.2018
  *
- * Copyright notice: -
+ * Copyright notice: AGPLv3
  */
 
 public class Coordinate {
@@ -30,9 +30,9 @@ public class Coordinate {
      *
      */
     public Coordinate(double x, double y, double z){
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        setX(x);
+        setY(y);
+        setZ(z);
     }
 
     // Functions
@@ -40,11 +40,30 @@ public class Coordinate {
     /**
      * @methodtype boolean-query
      */
-    public boolean isEqual(Coordinate coordinate){
-        if(this.x == coordinate.getX() && this.y == coordinate.getY() && this.z == coordinate.getZ()){
+    public boolean check_double(double d){
+        if(Double.isFinite(d) && !Double.isNaN(d)){
             return true;
+        }else{
+            return false;
         }
-        return false;
+    }
+
+    /**
+     * @methodtype boolean-query
+     */
+    public boolean isEqual(Coordinate coordinate){
+        double epsilon = 0.0000001;
+
+        if(Math.abs(coordinate.getX() - this.x) >= epsilon){
+            return false;
+        }
+        if(Math.abs(coordinate.getY() - this.y) >= epsilon){
+            return false;
+        }
+        if(Math.abs(coordinate.getZ() - this.z) >= epsilon){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -88,6 +107,9 @@ public class Coordinate {
      * @methodtype set
      */
     public void setX(double newX){
+        if(!check_double(newX)){
+            throw new IllegalArgumentException("value of double must not be infinity or NaN");
+        }
         this.x = newX;
     }
 
@@ -95,6 +117,9 @@ public class Coordinate {
      * @methodtype set
      */
     public void setY(double newY){
+        if(!check_double(newY)){
+            throw new IllegalArgumentException("value of double must not be infinity or NaN");
+        }
         this.y = newY;
     }
 
@@ -102,6 +127,9 @@ public class Coordinate {
      * @methodtype set
      */
     public void setZ(double newZ){
+        if(!check_double(newZ)){
+            throw new IllegalArgumentException("value of double must not be infinity or NaN");
+        }
         this.z = newZ;
     }
 }

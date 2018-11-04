@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
  *
  * Date: 23.10.2018
  *
- * Copyright notice: -
+ * Copyright notice: AGPLv3
  */
 
 public class CoordinateTest {

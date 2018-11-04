@@ -7,7 +7,7 @@ package org.wahlzeit.model;
  *
  * Date: 23.10.2018
  *
- * Copyright notice: -
+ * Copyright notice: AGPLv3
  */
 
 public class Location {
