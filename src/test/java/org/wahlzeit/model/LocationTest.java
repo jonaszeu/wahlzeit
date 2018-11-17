@@ -17,14 +17,14 @@ public class LocationTest {
 
     @Test
     public void testTrivialCreation(){
-        Coordinate coordinate = new Coordinate(0, 0, 0);
+        CartesianCoordinate coordinate = new CartesianCoordinate(0, 0, 0);
         Location location = new Location(coordinate);
         assertEquals(location.getCoordinate(), coordinate);
     }
 
     @Test
     public void testComplexCreation(){
-        Coordinate coordinate = new Coordinate(0, 0, 0);
+        CartesianCoordinate coordinate = new CartesianCoordinate(0, 0, 0);
         String description = "Wundervoller Ort";
         Location location = new Location(coordinate, description);
         assertEquals(location.getCoordinate(), coordinate);
@@ -33,8 +33,8 @@ public class LocationTest {
 
     @Test
     public void testGetterSetter(){
-        Coordinate coordinate1 = new Coordinate(1,2,3);
-        Coordinate coordinate2 = new Coordinate(-1,-2,-3);
+        CartesianCoordinate coordinate1 = new CartesianCoordinate(1,2,3);
+        CartesianCoordinate coordinate2 = new CartesianCoordinate(-1,-2,-3);
 
         String description1 = "Desc1";
         String description2 = "Desc2";

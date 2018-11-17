@@ -12,14 +12,14 @@ package org.wahlzeit.model;
 
 public class Location {
 
-    private Coordinate coordinate = null;
+    private CartesianCoordinate coordinate = null;
     private String description = ""; // Optional can describe the location
 
-    public Location(Coordinate coordinate){
+    public Location(CartesianCoordinate coordinate){
         this.coordinate = coordinate;
     }
 
-    public Location(Coordinate coordinate, String description){
+    public Location(CartesianCoordinate coordinate, String description){
         this.coordinate = coordinate;
         this.description = description;
     }
@@ -29,14 +29,14 @@ public class Location {
     /**
      * @methodtype set
      */
-    public void setCoordinate(Coordinate coordinate){
+    public void setCoordinate(CartesianCoordinate coordinate){
         this.coordinate = coordinate;
     }
 
     /**
      * @methodtype get
      */
-    public Coordinate getCoordinate(){
+    public CartesianCoordinate getCoordinate(){
         return this.coordinate;
     }
 
