@@ -10,7 +10,7 @@ public class IndieGamePhotoTest {
 
     @Before
     public void setUp(){
-        this.testPhoto = new IndieGamePhoto();
+        this.testPhoto = new IndieGamePhoto("str_titel", "str_genre", "str_developer", "str_publisher", 4, 4, 4);
     }
 
 

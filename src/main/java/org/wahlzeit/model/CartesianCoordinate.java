@@ -3,14 +3,14 @@ package org.wahlzeit.model;
 /*
  * Classname: CartesianCoordinate
  *
- * Version information: v2.0 [for adap-hw05]
+ * Version information: v2.1 [for adap-hw06]
  *
- * Date: 17.11.2018
+ * Date: 25.11.2018
  *
  * Copyright notice: AGPLv3
  */
 
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
 
     // CartesianCoordinate variables with default values
     private double x = 0.00;
@@ -75,16 +75,6 @@ public class CartesianCoordinate implements Coordinate {
         double phi = Math.atan2(getY(), getX());
 
         return new SphericCoordinate(phi, theta, radius);
-    }
-
-    /**
-     *
-     */
-    @Override
-    public double getCentralAngle(Coordinate coordinate){
-        SphericCoordinate tmpSC = this.asSphericCoordinate();
-
-        return tmpSC.getCentralAngle(coordinate);
     }
 
     /**

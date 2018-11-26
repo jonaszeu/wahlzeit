@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 /*
  * Classname: Coordinate
  *
- * Version information: v2.0 [for adap-hw05]
+ * Version information: v2.1 [correction for adap-hw05]
  *
- * Date: 17.11.2018
+ * Date: 25.11.2018
  *
  * Copyright notice: AGPLv3
  */
@@ -13,28 +13,28 @@ package org.wahlzeit.model;
 public interface Coordinate {
 
     /**
-     *
+     * @methodtype conversion
      */
-    public CartesianCoordinate asCartesianCoordinate();
+    CartesianCoordinate asCartesianCoordinate();
 
     /**
-     *
+     * @methodtype get
      */
-    public double getCartesianDistance(Coordinate coordinate);
+    double getCartesianDistance(Coordinate coordinate);
 
     /**
-     *
+     * @methodtype conversion
      */
-    public SphericCoordinate asSphericCoordinate();
+    SphericCoordinate asSphericCoordinate();
 
     /**
-     *
+     * @methodtype get
      */
-    public double getCentralAngle(Coordinate coordinate);
+    double getCentralAngle(Coordinate coordinate);
 
     /**
-     *
+     * @methodtype boolean-query
      */
-    public boolean isEqual(Coordinate coordinate);
+    boolean isEqual(Coordinate coordinate);
 
 }

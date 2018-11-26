@@ -3,14 +3,14 @@ package org.wahlzeit.model;
 /*
  * Classname: SphericCoordinate
  *
- * Version information: v1.0 [for adap-hw05]
+ * Version information: v1.1 [for adap-hw06]
  *
- * Date: 17.11.2018
+ * Date: 25.11.2018
  *
  * Copyright notice: AGPLv3
  */
 
-public class SphericCoordinate implements Coordinate{
+public class SphericCoordinate extends AbstractCoordinate{
 
     /**
      *
@@ -49,13 +49,6 @@ public class SphericCoordinate implements Coordinate{
         return new CartesianCoordinate(x, y, z);
     }
 
-    /**
-     *
-     */
-    @Override
-    public double getCartesianDistance(Coordinate coordinate){
-        return this.asCartesianCoordinate().getCartesianDistance(coordinate);
-    }
 
     /**
      *
