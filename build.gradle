@@ -54,7 +54,8 @@ dependencies {
     testCompile 'com.google.appengine:appengine-api-stubs:+'
     testCompile 'com.google.appengine:appengine-api-labs:+'
     testCompile 'com.google.appengine:appengine-tools-sdk:+'
-    testCompile 'junit:junit:4.+'
+    // junit 4.13-beta-1 occured error in travis 26.11.2018
+    testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:2.22.0'
 }
 
