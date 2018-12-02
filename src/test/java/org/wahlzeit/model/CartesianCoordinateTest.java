@@ -8,9 +8,9 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 /*
  * Classname: CartesianCoordinateTest
  *
- * Version information: v2.0 [for adap-hw05]
+ * Version information: v2.1 [for adap-hw07]
  *
- * Date: 17.11.2018
+ * Date: 02.12.2018
  *
  * Copyright notice: AGPLv3
  */
@@ -95,21 +95,6 @@ public class CartesianCoordinateTest {
         assertEquals(coordinate2.getX(), x1, 0);
         assertEquals(coordinate2.getY(), y1, 0);
         assertEquals(coordinate2.getZ(), z1, 0);
-    }
-
-    @Test
-    public void testGetDistance(){
-        CartesianCoordinate coordinate1 = new CartesianCoordinate();
-        CartesianCoordinate coordinate2 = new CartesianCoordinate();
-        CartesianCoordinate coordinate3 = new CartesianCoordinate(0, 0, 0);
-        CartesianCoordinate coordinate4 = new CartesianCoordinate(1,2,3);
-
-        assertEquals(coordinate1.getDistance(coordinate2), 0, 0);
-        assertEquals(coordinate1.getDistance(coordinate3), 0, 0);
-        assertEquals(coordinate1.getDistance(coordinate4), 3.74165738, 0.00001);
-
-        assertEquals(coordinate3.getDistance(coordinate4), 3.74165738, 0.00001);
-        assertEquals(coordinate4.getDistance(coordinate4), 0, 0);
     }
 
     @Test

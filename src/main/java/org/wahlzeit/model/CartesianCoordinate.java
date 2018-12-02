@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 /*
  * Classname: CartesianCoordinate
  *
- * Version information: v2.1 [for adap-hw06]
+ * Version information: v3 [for adap-hw07]
  *
- * Date: 25.11.2018
+ * Date: 02.12.2018
  *
  * Copyright notice: AGPLv3
  */
@@ -16,8 +16,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
     private double x = 0.00;
     private double y = 0.00;
     private double z = 0.00;
-
-    // Constructors
 
     /**
      *
@@ -35,8 +33,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
         setZ(z);
     }
 
-    // Functions
-
     /**
      * @methodtype boolean-query
      */
@@ -49,7 +45,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     /**
-     *
+     * @methodtype conversion
      */
     @Override
     public CartesianCoordinate asCartesianCoordinate(){
@@ -57,66 +53,29 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     /**
-     *
-     */
-    @Override
-    public double getCartesianDistance(Coordinate coordinate){
-        CartesianCoordinate tmpCC = coordinate.asCartesianCoordinate();
-        return getDistance(tmpCC);
-    }
-
-    /**
-     *
+     * @methodtype conversion
      */
     @Override
     public SphericCoordinate asSphericCoordinate(){
+
+        assertClassInvariants();
+
         double radius = Math.sqrt(Math.pow(getX(), 2) + Math.pow(getY(), 2) + Math.pow(getZ(), 2));
         double theta = Math.acos(z/radius);
         double phi = Math.atan2(getY(), getX());
+
+        assertClassInvariants();
 
         return new SphericCoordinate(phi, theta, radius);
     }
 
     /**
-     * @methodtype boolean-query
+     * @methodtype get
      */
     @Override
-    public boolean isEqual(Coordinate coordinate){
-        double epsilon = 0.0000001;
-
-        if(coordinate == null){
-            return false;
-        }
-
-        CartesianCoordinate tmpCC = coordinate.asCartesianCoordinate();
-
-        if(Math.abs(tmpCC.getX() - getX()) >= epsilon){
-            return false;
-        }
-        if(Math.abs(tmpCC.getY() - getY()) >= epsilon){
-            return false;
-        }
-        if(Math.abs(tmpCC.getZ() - getZ()) >= epsilon){
-            return false;
-        }
-        return true;
+    public double getCentralAngle(Coordinate coordinate){
+        return asSphericCoordinate().getCentralAngle(coordinate);
     }
-
-    /**
-     * Calculates and returns the direct cartesian distance
-     */
-    public double getDistance(CartesianCoordinate coordinate){
-        if(this.isEqual(coordinate)){
-            return 0;
-        }
-
-        // Direct Cartesian distance
-        double distance = Math.sqrt(Math.pow(this.x-coordinate.x,2)+Math.pow(this.y-coordinate.y,2)+Math.pow(this.z-coordinate.z,2));
-
-        return distance;
-    }
-
-    // Getter and Setter
 
     /**
      * @methodtype get
@@ -143,29 +102,57 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @methodtype set
      */
     public void setX(double newX){
-        if(!check_double(newX)){
-            throw new IllegalArgumentException("value of double must not be infinity or NaN");
-        }
+
+        assertIsValidValue(newX);
+        assertClassInvariants();
+
         this.x = newX;
+
+        assertClassInvariants();
     }
 
     /**
      * @methodtype set
      */
     public void setY(double newY){
-        if(!check_double(newY)){
-            throw new IllegalArgumentException("value of double must not be infinity or NaN");
-        }
+
+        assertIsValidValue(newY);
+        assertClassInvariants();
+
         this.y = newY;
+
+        assertClassInvariants();
     }
 
     /**
      * @methodtype set
      */
     public void setZ(double newZ){
-        if(!check_double(newZ)){
+
+        assertIsValidValue(newZ);
+        assertClassInvariants();
+
+        this.z = newZ;
+
+        assertClassInvariants();
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertIsValidValue(double cartesianCoordinateValue){
+        if(!check_double(cartesianCoordinateValue)){
             throw new IllegalArgumentException("value of double must not be infinity or NaN");
         }
-        this.z = newZ;
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertClassInvariants(){
+        super.assertClassInvariants();
+        assertIsValidValue(this.getX());
+        assertIsValidValue(this.getY());
+        assertIsValidValue(this.getZ());
     }
 }
