@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 /*
  * Classname: CartesianCoordinate
  *
- * Version information: v3 [for adap-hw07]
+ * Version information: v3.1
  *
- * Date: 02.12.2018
+ * Date: 09.12.2018
  *
  * Copyright notice: AGPLv3
  */
@@ -63,10 +63,12 @@ public class CartesianCoordinate extends AbstractCoordinate {
         double radius = Math.sqrt(Math.pow(getX(), 2) + Math.pow(getY(), 2) + Math.pow(getZ(), 2));
         double theta = Math.acos(z/radius);
         double phi = Math.atan2(getY(), getX());
+        SphericCoordinate newSphericCoordinate = new SphericCoordinate(phi, theta, radius);
 
+        assertIsNonNullArgument(newSphericCoordinate);
         assertClassInvariants();
 
-        return new SphericCoordinate(phi, theta, radius);
+        return newSphericCoordinate;
     }
 
     /**
@@ -140,7 +142,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      * @methodtype assertion
      */
-    protected void assertIsValidValue(double cartesianCoordinateValue){
+    protected void assertIsValidValue(double cartesianCoordinateValue) throws IllegalArgumentException{
         if(!check_double(cartesianCoordinateValue)){
             throw new IllegalArgumentException("value of double must not be infinity or NaN");
         }

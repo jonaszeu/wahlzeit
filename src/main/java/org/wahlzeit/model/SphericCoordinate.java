@@ -48,10 +48,12 @@ public class SphericCoordinate extends AbstractCoordinate{
         double x = getRadius() * Math.sin(getTheta()) * Math.cos(getPhi());
         double y = getRadius() * Math.sin(getTheta()) * Math.sin(getPhi());
         double z = getRadius() * Math.cos(getTheta());
+        CartesianCoordinate newCartesianCoordinate = new CartesianCoordinate(x, y, z);
 
+        assertIsNonNullArgument(newCartesianCoordinate);
         assertClassInvariants();
 
-        return new CartesianCoordinate(x, y, z);
+        return newCartesianCoordinate;
     }
 
     /**

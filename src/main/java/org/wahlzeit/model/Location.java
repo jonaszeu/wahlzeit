@@ -3,48 +3,54 @@ package org.wahlzeit.model;
 /*
  * Classname: Location
  *
- * Version information: v1.0
+ * Version information: v2.0
  *
- * Date: 23.10.2018
+ * Date: 09.12.2018
  *
  * Copyright notice: AGPLv3
  */
 
 public class Location {
 
-    private CartesianCoordinate coordinate = null;
+    private CartesianCoordinate coordinate = new CartesianCoordinate();
     private String description = ""; // Optional can describe the location
 
     public Location(CartesianCoordinate coordinate){
-        this.coordinate = coordinate;
+        setCoordinate(coordinate);
     }
 
     public Location(CartesianCoordinate coordinate, String description){
-        this.coordinate = coordinate;
-        this.description = description;
+        setCoordinate(coordinate);
+        setDescription(description);
     }
-
-    // Getter and Setter
 
     /**
      * @methodtype set
      */
     public void setCoordinate(CartesianCoordinate coordinate){
+        assertIsNonNullArgument(coordinate);
+        assertClassInvariants();
+
         this.coordinate = coordinate;
+
+        assertClassInvariants();
     }
 
     /**
      * @methodtype get
      */
-    public CartesianCoordinate getCoordinate(){
-        return this.coordinate;
-    }
+    public CartesianCoordinate getCoordinate(){ return this.coordinate; }
 
     /**
      * @methodtype set
      */
     public void setDescription(String description){
+        assertIsValidDescription(description);
+        assertClassInvariants();
+
         this.description = description;
+
+        assertClassInvariants();
     }
 
     /**
@@ -52,5 +58,31 @@ public class Location {
      */
     public String getDescription(){
         return this.description;
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertIsNonNullArgument(CartesianCoordinate coordinate) throws NullPointerException{
+        if(coordinate == null){
+            throw new NullPointerException("Null is no acceptable argument.");
+        }
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertIsValidDescription(String description) throws IllegalArgumentException{
+        if(description == null){
+            throw new IllegalArgumentException("Description can not be null.");
+        }
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertClassInvariants(){
+        assertIsNonNullArgument(this.coordinate);
+        assertIsValidDescription(this.description);
     }
 }

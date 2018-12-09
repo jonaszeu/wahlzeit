@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 /*
  * Classname: AbstractCoordinate
  *
- * Version information: v2 [for adap-hw07]
+ * Version information: v2.1
  *
- * Date: 02.12.2018
+ * Date: 09.12.2018
  *
  * Copyright notice: AGPLv3
  */
@@ -60,10 +60,12 @@ public abstract class AbstractCoordinate implements Coordinate {
                 * Math.cos(spherCoordinateB.getPhi())
                 * Math.cos(spherCoordinateB.getTheta()
                 - spherCoordinateA.getTheta());
+        centralAngle = Math.acos(centralAngle);
 
+        assertIsValidAngle(centralAngle);
         assertClassInvariants();
 
-        return Math.acos(centralAngle);
+        return centralAngle;
     }
 
     /**
@@ -98,7 +100,7 @@ public abstract class AbstractCoordinate implements Coordinate {
     /**
      * @methodtype assertion
      */
-    protected void assertIsNonNullArgument(Coordinate coordinate){
+    protected void assertIsNonNullArgument(Coordinate coordinate) throws NullPointerException{
         if(coordinate == null){
             throw new NullPointerException("Null is no acceptable argument.");
         }
@@ -112,9 +114,18 @@ public abstract class AbstractCoordinate implements Coordinate {
     /**
      * @methodtype assertion
      */
-    protected void assertIsValidDistance(double distance){
+    protected void assertIsValidDistance(double distance) throws IllegalArgumentException{
         if(distance < 0){
             throw new IllegalArgumentException("Distance can not be negative");
+        }
+    }
+
+    /**
+     * @methodtype assertion
+     */
+    protected void assertIsValidAngle(double angle) throws IllegalArgumentException{
+        if(angle < 0 || angle > 360){
+            throw new IllegalArgumentException("Angle can not be negative or greater 360");
         }
     }
 

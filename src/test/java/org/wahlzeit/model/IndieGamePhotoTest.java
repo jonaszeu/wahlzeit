@@ -45,22 +45,22 @@ public class IndieGamePhotoTest {
         assertEquals(testPhoto.getReleaseYear(), 2011);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testIlleagleTitle() {
         testPhoto.setTitle(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testIlleagleGenre() {
         testPhoto.setGenre(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testIlleagleDeveloper() {
         testPhoto.setDeveloper(null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = NullPointerException.class)
     public void testIlleaglePublisher() {
         testPhoto.setPublisher(null);
     }
