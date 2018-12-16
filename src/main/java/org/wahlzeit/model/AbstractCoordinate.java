@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 /*
  * Classname: AbstractCoordinate
  *
- * Version information: v2.1
+ * Version information: v3
  *
- * Date: 09.12.2018
+ * Date: 15.12.2018
  *
  * Copyright notice: AGPLv3
  */
@@ -77,24 +77,21 @@ public abstract class AbstractCoordinate implements Coordinate {
         assertIsNonNullArgument(coordinate);
         assertClassInvariants();
 
-        CartesianCoordinate cartCoordinateA = this.asCartesianCoordinate();
-        CartesianCoordinate cartCoordinateB = coordinate.asCartesianCoordinate();
-
-        boolean isEqualReturn = true;
-
-        if(Math.abs(cartCoordinateB.getX() - cartCoordinateA.getX()) >= EPSILON){
-            isEqualReturn = false;
-        }
-        if(Math.abs(cartCoordinateB.getY() - cartCoordinateA.getY()) >= EPSILON){
-            isEqualReturn = false;
-        }
-        if(Math.abs(cartCoordinateB.getZ() - cartCoordinateA.getZ()) >= EPSILON){
-            isEqualReturn = false;
+        boolean isEqualReturn = false;
+        if(this == coordinate){
+            isEqualReturn = true;
         }
 
         assertClassInvariants();
 
         return isEqualReturn;
+    }
+
+    /**
+     *
+     */
+    protected static String getCoordinateId(double arg1, double arg2, double arg3, String coordinateType){
+        return coordinateType + arg1 + arg2 + arg3;
     }
 
     /**

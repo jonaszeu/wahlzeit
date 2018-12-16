@@ -3,34 +3,57 @@ package org.wahlzeit.model;
 /*
  * Classname: CartesianCoordinate
  *
- * Version information: v3.1
+ * Version information: v4
  *
- * Date: 09.12.2018
+ * Date: 15.12.2018
  *
  * Copyright notice: AGPLv3
  */
 
-public class CartesianCoordinate extends AbstractCoordinate {
+import java.util.HashMap;
 
-    // CartesianCoordinate variables with default values
-    private double x = 0.00;
-    private double y = 0.00;
-    private double z = 0.00;
+public class CartesianCoordinate extends AbstractCoordinate {
 
     /**
      *
      */
-    public CartesianCoordinate(){
-        // Keep Default values x:0, y:0, z:0
+    private static final HashMap<String, CartesianCoordinate> CARTESIAN_COORDINATE_HASH_MAP = new HashMap<>();
+
+    /**
+     *
+     */
+    private final double x;
+    private final double y;
+    private final double z;
+
+    /**
+     *
+     */
+    private CartesianCoordinate(double x, double y, double z){
+        assertIsValidValue(x);
+        assertIsValidValue(y);
+        assertIsValidValue(z);
+
+        this.x = x;
+        this.y = y;
+        this.z = z;
+
+        assertClassInvariants();
     }
 
     /**
-     *
+    *
      */
-    public CartesianCoordinate(double x, double y, double z){
-        setX(x);
-        setY(y);
-        setZ(z);
+    public static synchronized CartesianCoordinate getCartesianCoordinate(double x, double y, double z){
+        String id = getCoordinateId(x, y, z, "cartesianCoordinate");
+        CartesianCoordinate coordinate = CARTESIAN_COORDINATE_HASH_MAP.get(id);
+        if(coordinate != null){
+            return coordinate;
+        }else{
+            coordinate = new CartesianCoordinate(x, y, z);
+            CARTESIAN_COORDINATE_HASH_MAP.put(id, coordinate);
+            return coordinate;
+        }
     }
 
     /**
@@ -61,14 +84,14 @@ public class CartesianCoordinate extends AbstractCoordinate {
         assertClassInvariants();
 
         double radius = Math.sqrt(Math.pow(getX(), 2) + Math.pow(getY(), 2) + Math.pow(getZ(), 2));
-        double theta = Math.acos(z/radius);
+        double theta = Math.acos(getZ()/radius);
         double phi = Math.atan2(getY(), getX());
-        SphericCoordinate newSphericCoordinate = new SphericCoordinate(phi, theta, radius);
+        SphericCoordinate sphericCoordinate = SphericCoordinate.getSphericCoordinate(phi, theta, radius);
 
-        assertIsNonNullArgument(newSphericCoordinate);
+        assertIsNonNullArgument(sphericCoordinate);
         assertClassInvariants();
 
-        return newSphericCoordinate;
+        return sphericCoordinate;
     }
 
     /**
@@ -98,45 +121,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
      */
     public double getZ(){
         return this.z;
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setX(double newX){
-
-        assertIsValidValue(newX);
-        assertClassInvariants();
-
-        this.x = newX;
-
-        assertClassInvariants();
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setY(double newY){
-
-        assertIsValidValue(newY);
-        assertClassInvariants();
-
-        this.y = newY;
-
-        assertClassInvariants();
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setZ(double newZ){
-
-        assertIsValidValue(newZ);
-        assertClassInvariants();
-
-        this.z = newZ;
-
-        assertClassInvariants();
     }
 
     /**

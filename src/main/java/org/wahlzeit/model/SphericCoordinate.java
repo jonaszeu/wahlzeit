@@ -3,38 +3,58 @@ package org.wahlzeit.model;
 /*
  * Classname: SphericCoordinate
  *
- * Version information: v2 [for adap-hw07]
+ * Version information: v3
  *
- * Date: 02.12.2018
+ * Date: 15.12.2018
  *
  * Copyright notice: AGPLv3
  */
+
+import java.util.HashMap;
 
 public class SphericCoordinate extends AbstractCoordinate{
 
     /**
      *
      */
-    private double phi;
-    private double theta;
-    private double radius;
+    private static final HashMap<String, SphericCoordinate> SPHERIC_COORDINATE_HASH_MAP = new HashMap<>();
 
     /**
      *
      */
-    public SphericCoordinate(){
-        setPhi(0);
-        setTheta(0);
-        setRadius(0);
+    private final double phi;
+    private final double theta;
+    private final double radius;
+
+
+    /**
+     *
+     */
+    private SphericCoordinate(double phi, double theta, double radius){
+        assertIsValidPhi(phi);
+        assertIsValidTheta(theta);
+        assertIsValidRadius(radius);
+
+        this.phi = phi;
+        this.theta = theta;
+        this.radius = radius;
+
+        assertClassInvariants();
     }
 
     /**
      *
      */
-    public SphericCoordinate(double phi, double theta, double radius){
-        setPhi(phi);
-        setTheta(theta);
-        setRadius(radius);
+    public static synchronized SphericCoordinate getSphericCoordinate(double phi, double theta, double radius){
+        String id = getCoordinateId(phi, theta, radius, "sphericCoordinate");
+        SphericCoordinate coordinate = SPHERIC_COORDINATE_HASH_MAP.get(id);
+        if(coordinate != null){
+            return coordinate;
+        }else{
+            coordinate = new SphericCoordinate(phi, theta, radius);
+            SPHERIC_COORDINATE_HASH_MAP.put(id, coordinate);
+            return coordinate;
+        }
     }
 
     /**
@@ -48,12 +68,13 @@ public class SphericCoordinate extends AbstractCoordinate{
         double x = getRadius() * Math.sin(getTheta()) * Math.cos(getPhi());
         double y = getRadius() * Math.sin(getTheta()) * Math.sin(getPhi());
         double z = getRadius() * Math.cos(getTheta());
-        CartesianCoordinate newCartesianCoordinate = new CartesianCoordinate(x, y, z);
 
-        assertIsNonNullArgument(newCartesianCoordinate);
+        CartesianCoordinate cartesianCoordinate = CartesianCoordinate.getCartesianCoordinate(x, y, z);
+
+        assertIsNonNullArgument(cartesianCoordinate);
         assertClassInvariants();
 
-        return newCartesianCoordinate;
+        return cartesianCoordinate;
     }
 
     /**
@@ -70,14 +91,6 @@ public class SphericCoordinate extends AbstractCoordinate{
     @Override
     public SphericCoordinate asSphericCoordinate(){
         return this;
-    }
-
-    /**
-     * @methodtype boolean-query
-     */
-    @Override
-    public boolean isEqual(Coordinate coordinate){
-        return asCartesianCoordinate().isEqual(coordinate);
     }
 
     /**
@@ -101,44 +114,6 @@ public class SphericCoordinate extends AbstractCoordinate{
         return radius;
     }
 
-    /**
-     * @methodtype set
-     */
-    public void setPhi(double phi) {
-
-        assertIsValidPhi(phi);
-        assertClassInvariants();
-
-        this.phi = phi;
-
-        assertClassInvariants();
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setTheta(double theta) {
-
-        assertIsValidTheta(theta);
-        assertClassInvariants();
-
-        this.theta = theta;
-
-        assertClassInvariants();
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setRadius(double radius){
-
-        assertIsValidRadius(radius);
-        assertClassInvariants();
-
-        this.radius = radius;
-
-        assertClassInvariants();
-    }
 
     /**
      * @methodtype assertion

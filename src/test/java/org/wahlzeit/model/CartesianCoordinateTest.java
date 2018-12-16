@@ -8,9 +8,9 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 /*
  * Classname: CartesianCoordinateTest
  *
- * Version information: v2.1 [for adap-hw07]
+ * Version information: v3
  *
- * Date: 02.12.2018
+ * Date: 15.12.2018
  *
  * Copyright notice: AGPLv3
  */
@@ -30,7 +30,7 @@ public class CartesianCoordinateTest {
 
     @Test
     public void testTrivialCreation(){
-        CartesianCoordinate coordinate = new CartesianCoordinate();
+        CartesianCoordinate coordinate = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
 
         assertEquals(coordinate.getX(), defaultX, 0);
         assertEquals(coordinate.getY(), defaultY, 0);
@@ -47,13 +47,13 @@ public class CartesianCoordinateTest {
         double y2 = -2;
         double z2 = -3;
 
-        CartesianCoordinate coordinate = new CartesianCoordinate(x, y, z);
+        CartesianCoordinate coordinate = CartesianCoordinate.getCartesianCoordinate(x, y, z);
 
         assertEquals(coordinate.getX(), x, 0);
         assertEquals(coordinate.getY(), y, 0);
         assertEquals(coordinate.getZ(), z, 0);
 
-        CartesianCoordinate coordinate2 = new CartesianCoordinate(x2, y2, z2);
+        CartesianCoordinate coordinate2 = CartesianCoordinate.getCartesianCoordinate(x2, y2, z2);
 
         assertEquals(coordinate2.getX(), x2, 0);
         assertEquals(coordinate2.getY(), y2, 0);
@@ -61,7 +61,7 @@ public class CartesianCoordinateTest {
     }
 
     @Test
-    public void testGetterSetter(){
+    public void testGetter(){
         double x1 = 1;
         double y1 = 2;
         double z1 = 3;
@@ -69,8 +69,8 @@ public class CartesianCoordinateTest {
         double y2 = -2;
         double z2 = -3;
 
-        CartesianCoordinate coordinate1 = new CartesianCoordinate(x1, y1, z1);
-        CartesianCoordinate coordinate2 = new CartesianCoordinate(x2, y2, z2);
+        CartesianCoordinate coordinate1 = CartesianCoordinate.getCartesianCoordinate(x1, y1, z1);
+        CartesianCoordinate coordinate2 = CartesianCoordinate.getCartesianCoordinate(x2, y2, z2);
 
         assertEquals(coordinate1.getX(), x1, 0);
         assertEquals(coordinate1.getY(), y1, 0);
@@ -79,31 +79,15 @@ public class CartesianCoordinateTest {
         assertEquals(coordinate2.getX(), x2, 0);
         assertEquals(coordinate2.getY(), y2, 0);
         assertEquals(coordinate2.getZ(), z2, 0);
-
-        coordinate1.setX(x2);
-        coordinate1.setY(y2);
-        coordinate1.setZ(z2);
-
-        coordinate2.setX(x1);
-        coordinate2.setY(y1);
-        coordinate2.setZ(z1);
-
-        assertEquals(coordinate1.getX(), x2, 0);
-        assertEquals(coordinate1.getY(), y2, 0);
-        assertEquals(coordinate1.getZ(), z2, 0);
-
-        assertEquals(coordinate2.getX(), x1, 0);
-        assertEquals(coordinate2.getY(), y1, 0);
-        assertEquals(coordinate2.getZ(), z1, 0);
     }
 
     @Test
     public void testIsEqual(){
-        CartesianCoordinate coordinate1 = new CartesianCoordinate();
-        CartesianCoordinate coordinate2 = new CartesianCoordinate();
-        CartesianCoordinate coordinate3 = new CartesianCoordinate(0, 0, 0);
-        CartesianCoordinate coordinate4 = new CartesianCoordinate(1,2,3);
-        CartesianCoordinate coordinate5 = new CartesianCoordinate(1, 2, 3);
+        CartesianCoordinate coordinate1 = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
+        CartesianCoordinate coordinate2 = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
+        CartesianCoordinate coordinate3 = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
+        CartesianCoordinate coordinate4 = CartesianCoordinate.getCartesianCoordinate(1,2,3);
+        CartesianCoordinate coordinate5 = CartesianCoordinate.getCartesianCoordinate(1, 2, 3);
 
         assertEquals(coordinate1.isEqual(coordinate2), true);
         assertEquals(coordinate1.isEqual(coordinate3), true);
@@ -118,16 +102,16 @@ public class CartesianCoordinateTest {
 
     @Test
     public void testAsCartesianCoordinate(){
-        CartesianCoordinate coordinate = new CartesianCoordinate();
+        CartesianCoordinate coordinate = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
         assertThat(coordinate.asCartesianCoordinate(), instanceOf(CartesianCoordinate.class));
     }
 
     @Test
     public void testGetCartesianDistance(){
-        CartesianCoordinate coordinate1 = new CartesianCoordinate();
-        CartesianCoordinate coordinate2 = new CartesianCoordinate();
-        CartesianCoordinate coordinate3 = new CartesianCoordinate(0, 0, 0);
-        CartesianCoordinate coordinate4 = new CartesianCoordinate(1,2,3);
+        CartesianCoordinate coordinate1 = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
+        CartesianCoordinate coordinate2 = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
+        CartesianCoordinate coordinate3 = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
+        CartesianCoordinate coordinate4 = CartesianCoordinate.getCartesianCoordinate(1,2,3);
 
         assertEquals(coordinate1.getCartesianDistance(coordinate2), 0, 0);
         assertEquals(coordinate1.getCartesianDistance(coordinate3), 0, 0);
@@ -139,11 +123,16 @@ public class CartesianCoordinateTest {
 
     @Test
     public void testAsSphericCoordinate(){
-        CartesianCoordinate coordinate = new CartesianCoordinate();
+        CartesianCoordinate coordinate = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
         assertThat(coordinate.asSphericCoordinate(), instanceOf(SphericCoordinate.class));
     }
 
     @Test
-    public void testGetCentralAngle(){}
+    public void testGetCentralAngle(){
+        CartesianCoordinate coordinate = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
+        CartesianCoordinate coordinate2 = CartesianCoordinate.getCartesianCoordinate(defaultX, defaultY, defaultZ);
+
+        coordinate.getCentralAngle(coordinate2);
+    }
 
 }

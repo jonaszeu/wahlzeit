@@ -6,9 +6,9 @@ import static org.junit.Assert.*;
 /*
  * Classname: LocationTest
  *
- * Version information: v1.0
+ * Version information: v2
  *
- * Date: 23.10.2018
+ * Date: 15.12.2018
  *
  * Copyright notice: AGPLv3
  */
@@ -17,14 +17,14 @@ public class LocationTest {
 
     @Test
     public void testTrivialCreation(){
-        CartesianCoordinate coordinate = new CartesianCoordinate(0, 0, 0);
+        CartesianCoordinate coordinate = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
         Location location = new Location(coordinate);
         assertEquals(location.getCoordinate(), coordinate);
     }
 
     @Test
     public void testComplexCreation(){
-        CartesianCoordinate coordinate = new CartesianCoordinate(0, 0, 0);
+        CartesianCoordinate coordinate = CartesianCoordinate.getCartesianCoordinate(0, 0, 0);
         String description = "Wundervoller Ort";
         Location location = new Location(coordinate, description);
         assertEquals(location.getCoordinate(), coordinate);
@@ -33,8 +33,8 @@ public class LocationTest {
 
     @Test
     public void testGetterSetter(){
-        CartesianCoordinate coordinate1 = new CartesianCoordinate(1,2,3);
-        CartesianCoordinate coordinate2 = new CartesianCoordinate(-1,-2,-3);
+        CartesianCoordinate coordinate1 = CartesianCoordinate.getCartesianCoordinate(1,2,3);
+        CartesianCoordinate coordinate2 = CartesianCoordinate.getCartesianCoordinate(-1,-2,-3);
 
         String description1 = "Desc1";
         String description2 = "Desc2";

@@ -3,16 +3,16 @@ package org.wahlzeit.model;
 /*
  * Classname: Location
  *
- * Version information: v2.0
+ * Version information: v3
  *
- * Date: 09.12.2018
+ * Date: 15.12.2018
  *
  * Copyright notice: AGPLv3
  */
 
 public class Location {
 
-    private CartesianCoordinate coordinate = new CartesianCoordinate();
+    private CartesianCoordinate coordinate = CartesianCoordinate.getCartesianCoordinate(0.0, 0.0, 0.0);
     private String description = ""; // Optional can describe the location
 
     public Location(CartesianCoordinate coordinate){
