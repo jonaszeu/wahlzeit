@@ -43,7 +43,7 @@ public class SphericCoordinate extends AbstractCoordinate{
     }
 
     /**
-     *
+     * @methodtype get
      */
     public static synchronized SphericCoordinate getSphericCoordinate(double phi, double theta, double radius){
         String id = getCoordinateId(phi, theta, radius, "sphericCoordinate");

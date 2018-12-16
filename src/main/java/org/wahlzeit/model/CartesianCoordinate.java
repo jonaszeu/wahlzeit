@@ -42,7 +42,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     /**
-    *
+     * @methodtype get
      */
     public static synchronized CartesianCoordinate getCartesianCoordinate(double x, double y, double z){
         String id = getCoordinateId(x, y, z, "cartesianCoordinate");

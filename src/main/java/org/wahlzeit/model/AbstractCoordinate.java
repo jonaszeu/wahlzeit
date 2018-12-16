@@ -88,7 +88,7 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     /**
-     *
+     * @methodtype get
      */
     protected static String getCoordinateId(double arg1, double arg2, double arg3, String coordinateType){
         return coordinateType + arg1 + arg2 + arg3;
