@@ -3,12 +3,21 @@ package org.wahlzeit.model;
 /*
  * Classname: IndieGamePhoto
  *
- * Version information: v2.0
+ * Version information: v2.1
  *
- * Date: 09.12.2018
+ * Date: 13.01.2019
  *
  * Copyright notice: AGPLv3
  */
+
+import org.wahlzeit.utils.PatternInstance;
+
+@PatternInstance(
+        patternName = "Abstract Factory",
+        participants = {
+                "IndieGamePhotoFactory", "IndieGamePhoto",
+        }
+)
 
 public class IndieGamePhoto extends Photo{
 

@@ -3,14 +3,20 @@ package org.wahlzeit.model;
 /*
  * Classname: CartesianCoordinate
  *
- * Version information: v4
+ * Version information: v4.1
  *
- * Date: 15.12.2018
+ * Date: 13.01.2019
  *
  * Copyright notice: AGPLv3
  */
 
 import java.util.HashMap;
+import org.wahlzeit.utils.PatternInstance;
+
+@PatternInstance(
+        patternName = "Value Object",
+        participants = {"CartesianCoordinate"}
+)
 
 public class CartesianCoordinate extends AbstractCoordinate {
 

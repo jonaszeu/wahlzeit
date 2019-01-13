@@ -20,6 +20,8 @@
 
 package org.wahlzeit.model.persistence;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.googlecode.objectify.ObjectifyService;
@@ -39,6 +41,12 @@ import java.util.logging.Logger;
  * 
  * @review
  */
+
+@PatternInstance(
+		patternName = "Adapter",
+		participants = {"DatastoreAdapter", "ImageWrapper"}
+)
+
 public class DatastoreAdapter extends ImageStorage {
 
 	private static final Logger log = Logger.getLogger(DatastoreAdapter.class.getName());

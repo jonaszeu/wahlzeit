@@ -20,6 +20,8 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import com.google.appengine.api.images.Image;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
@@ -43,6 +45,12 @@ import java.util.logging.Logger;
 /**
  * A photo manager provides access to and manages photos.
  */
+
+@PatternInstance(
+		patternName = "Singleton",
+		participants = {"PhotoManager"}
+)
+
 public class PhotoManager extends ObjectManager {
 
 	/**

@@ -10,6 +10,12 @@ package org.wahlzeit.model;
  * Copyright notice: AGPLv3
  */
 
+import org.wahlzeit.utils.PatternInstance;
+
+@PatternInstance(
+        patternName = "Template Method",
+        participants = { "AbstractCoordinate", "CartesianCoordinate", "SphericCoordinate" }
+)
 
 public abstract class AbstractCoordinate implements Coordinate {
 

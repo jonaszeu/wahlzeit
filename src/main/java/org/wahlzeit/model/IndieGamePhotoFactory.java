@@ -3,16 +3,25 @@ package org.wahlzeit.model;
 /*
  * Classname: IndieGamePhotoFactory
  *
- * Version information: v1.0
+ * Version information: v1.1
  *
- * Date: 10.11.2018
+ * Date: 13.01.2019
  *
  * Copyright notice: AGPLv3
  */
 
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
+
+
+@PatternInstance(
+        patternName = "Abstract Factory",
+        participants = {
+                "IndieGamePhotoFactory", "IndieGamePhoto",
+        }
+)
 
 public class IndieGamePhotoFactory extends PhotoFactory{
 
