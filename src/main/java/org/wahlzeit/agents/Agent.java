@@ -21,12 +21,21 @@
 package org.wahlzeit.agents;
 
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 
 /**
  * An Agent executes background tasks.
  */
+
+@PatternInstance(
+		patternName = "Template Method",
+		participants = {
+				"Agent", "NotifyUsersAboutPraiseAgent",
+		}
+)
+
 public abstract class Agent {
 
 	private static Logger log = Logger.getLogger(Agent.class.getName());
