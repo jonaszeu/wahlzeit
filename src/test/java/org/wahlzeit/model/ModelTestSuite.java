@@ -21,6 +21,9 @@ import org.wahlzeit.model.persistence.PersistenceTestSuite;
         IndieGamePhotoTest.class,
         IndieGamePhotoFactoryTest.class,
         IndieGamePhotoManagerTest.class,
+        IndieGameTest.class,
+        IndieGameTypeTest.class,
+        IndieGameManagerTest.class,
 })
 
 public class ModelTestSuite { /** do nothing **/ }

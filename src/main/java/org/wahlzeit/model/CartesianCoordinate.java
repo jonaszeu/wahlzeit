@@ -3,7 +3,7 @@ package org.wahlzeit.model;
 /*
  * Classname: CartesianCoordinate
  *
- * Version information: v4.1
+ * Version information: v4.2
  *
  * Date: 13.01.2019
  *
@@ -33,7 +33,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     private final double z;
 
     /**
-     *
+     * @methodtype constructor
      */
     private CartesianCoordinate(double x, double y, double z){
         assertIsValidValue(x);
