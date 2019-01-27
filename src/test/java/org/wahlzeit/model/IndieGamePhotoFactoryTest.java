@@ -25,6 +25,6 @@ public class IndieGamePhotoFactoryTest {
         PhotoId id = new PhotoId(42);
         assertNotNull(IndieGamePhotoFactory.getInstance().createPhoto());
         assertNotNull(IndieGamePhotoFactory.getInstance().createPhoto(id));
-        assertNotNull(IndieGamePhotoFactory.getInstance().createPhoto("title", "genre", "developer", "publisher", 1, 2, 2011));
+        assertNotNull(IndieGamePhotoFactory.getInstance().createPhoto("title", "genre", "developer", "publisher", 2011));
     }
 }

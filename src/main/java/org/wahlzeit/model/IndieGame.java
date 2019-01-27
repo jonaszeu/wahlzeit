@@ -10,7 +10,36 @@ package org.wahlzeit.model;
  * Copyright notice: AGPLv3
  */
 
+/*
+ *  adap-hw13 Trace and document the instantiation
+ *
+ *  For IndieGame
+ *
+ *  The intended way to create an IndieGame is to use the constructors of IndieGame.
+ *
+ *  public IndieGame(IndieGameType indieGameType)
+ *
+ *  public IndieGame(IndieGameType indieGameType, String title, String developer, String publisher, int releaseYear)
+ *
+ *  Both constructors use an IndieGameType, that should be created with the IndieGameManager (see IndieGameType.java)
+ *
+ *
+ *  Object creation table:
+ *  1. Delegation: seperate-object
+ *  2. Selection: by-subclassing
+ *  3. Configuration: in-code
+ *  4. Instantiation: in-code
+ *  5. Initialization: default
+ *  6. Building: default
+ *
+ */
+
 public class IndieGame{
+
+    /**
+     *
+     */
+    public static IndieGameManager indieGameManager = IndieGameManager.getInstance();
 
     /**
      *
@@ -23,8 +52,6 @@ public class IndieGame{
     private String title = "";
     private String developer = "";
     private String publisher = "";
-    private int releaseDay = 1;
-    private int releaseMonth = 1;
     private int releaseYear = 1;
 
     /**
@@ -37,14 +64,12 @@ public class IndieGame{
     /**
      * @methodtype constructor
      */
-    public IndieGame(IndieGameType indieGameType, String title, String developer, String publisher, int releaseDay, int releaseMonth, int releaseYear){
+    public IndieGame(IndieGameType indieGameType, String title, String developer, String publisher, int releaseYear){
         setIndieGameType(indieGameType);
 
         setTitle(title);
         setDeveloper(developer);
         setPublisher(publisher);
-        setReleaseDay(releaseDay);
-        setReleaseMonth(releaseMonth);
         setReleaseYear(releaseYear);
     }
 
@@ -72,20 +97,6 @@ public class IndieGame{
      */
     public String getPublisher() {
         return this.publisher;
-    }
-
-    /**
-     * @methodtype get
-     */
-    public int getReleaseDay() {
-        return this.releaseDay;
-    }
-
-    /**
-     * @methodtype get
-     */
-    public int getReleaseMonth() {
-        return this.releaseMonth;
     }
 
     /**
@@ -130,29 +141,6 @@ public class IndieGame{
         assertClassInvariants();
     }
 
-    /**
-     * @methodtype set
-     */
-    public void setReleaseDay(int releaseDay) {
-        assertIsValidReleaseDay(releaseDay);
-        assertClassInvariants();
-
-        this.releaseDay = releaseDay;
-
-        assertClassInvariants();
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setReleaseMonth(int releaseMonth) {
-        assertIsValidReleaseMonth(releaseMonth);
-        assertClassInvariants();
-
-        this.releaseMonth = releaseMonth;
-
-        assertClassInvariants();
-    }
 
     /**
      * @methodtype set
@@ -196,23 +184,6 @@ public class IndieGame{
         }
     }
 
-    /**
-     * @methodtype assertion
-     */
-    protected void assertIsValidReleaseDay(int releaseDay) throws IllegalArgumentException{
-        if(releaseDay <= 0 || releaseDay > 31) {
-            throw new IllegalArgumentException("Illeagle argument for releaseDay");
-        }
-    }
-
-    /**
-     * @methodtype assertion
-     */
-    protected void assertIsValidReleaseMonth(int releaseMonth) throws IllegalArgumentException{
-        if(releaseMonth <= 0 || releaseMonth > 12) {
-            throw new IllegalArgumentException("Illeagle argument for releaseMonth");
-        }
-    }
 
     /**
      * @methodtype assertion
@@ -231,8 +202,6 @@ public class IndieGame{
         assertIsNonNullArgument("title", this.title);
         assertIsNonNullArgument("publisher", this.publisher);
         assertIsNonNullArgument("developer", this.developer);
-        assertIsValidReleaseDay(this.releaseDay);
-        assertIsValidReleaseMonth(this.releaseMonth);
         assertIsValidReleaseYear(this.releaseYear);
     }
 }

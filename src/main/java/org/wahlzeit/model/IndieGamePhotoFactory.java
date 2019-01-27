@@ -76,9 +76,9 @@ public class IndieGamePhotoFactory extends PhotoFactory{
     /**
      * Creates a new IndieGamePhoto with the specified attirbutes
      */
-    public IndieGamePhoto createPhoto(String title, String genre, String developer, String publisher, int releaseDay, int releaseMonth, int releaseYear) {
+    public IndieGamePhoto createPhoto(String title, String genre, String developer, String publisher, int releaseYear) {
         IndieGameType indieGametype = IndieGameManager.getInstance().getIndieGameType(genre);
-        IndieGame indieGame = new IndieGame(indieGametype, title, developer, publisher, releaseDay, releaseMonth, releaseYear);
+        IndieGame indieGame = new IndieGame(indieGametype, title, developer, publisher, releaseYear);
         return new IndieGamePhoto(indieGame);
     }
 }

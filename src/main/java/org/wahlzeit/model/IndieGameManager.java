@@ -39,7 +39,7 @@ public class IndieGameManager{
     /**
      * @methodtype get
      */
-    public synchronized  IndieGameType getIndieGameType(String genre){
+    public synchronized IndieGameType getIndieGameType(String genre){
         assertIsNonNullArgument("genre", genre);
         IndieGameType type = INDIE_GAME_TYPE_HASH_MAP.get(genre);
         if(type != null){
