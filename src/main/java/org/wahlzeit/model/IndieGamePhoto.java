@@ -47,6 +47,16 @@ import org.wahlzeit.utils.PatternInstance;
  *  5. Initialization: default
  *  6. Building: default
  *
+ *  adap-hw14 Describe three collaborations
+ *
+ *  For IndieGamePhoto and IndieGame
+ *
+ *  collaboration: IndieGamePhoto / IndieGame
+ *  collaboration-type: Client/Service
+ *  role: Client
+ *
+ *  Purpose: Provide main domain functionality (from lecture slides)
+ *
  */
 
 public class IndieGamePhoto extends Photo{

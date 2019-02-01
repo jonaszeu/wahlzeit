@@ -32,6 +32,32 @@ package org.wahlzeit.model;
  *  5. Initialization: default
  *  6. Building: default
  *
+ *  adap-hw14 Describe three collaborations
+ *
+ *  For IndieGamePhoto and IndieGame
+ *
+ *  collaboration: IndieGamePhoto / IndieGame Collaboration
+ *  collaboration-type: Client/Service
+ *  role: Service
+ *
+ *  Purpose: Provide main domain functionality (from lecture slides)
+ *
+ *  For IndieGame and IndieGameType
+ *
+ *  collaboration: IndieGame / IndieGameType Collaboration
+ *  collaboration-type: Type Object
+ *  role: Base Object
+ *
+ *  Purpose: Provide information common to all isntances of a type (from lecture slides)
+ *
+ *  For IndieGameManager and IndieGame Collaboration
+ *
+ *  collaboration: IndieGameManager / IndieGame Collaboration
+ *  collaboration-type: Manager
+ *  role: Element
+ *
+ *  Purpose: Centralize object management in one place (from lecture slides)
+ *
  */
 
 public class IndieGame{

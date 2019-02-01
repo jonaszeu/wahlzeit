@@ -32,6 +32,17 @@ package org.wahlzeit.model;
  *  4. Instantiation: in-code
  *  5. Initialization: default
  *  6. Building: deafault
+ *
+ *  adap-hw14 Describe three collaborations
+ *
+ *  For IndieGame and IndieGameType
+ *
+ *  collaboration: IndieGame / IndieGameType Collaboration
+ *  collaboration-type: Type Object
+ *  role: Type Object
+ *
+ *  Purpose: Provide information common to all isntances of a type (from lecture slides)
+ *
  */
 
 public class IndieGameType{

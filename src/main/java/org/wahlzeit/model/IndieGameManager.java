@@ -12,6 +12,20 @@ package org.wahlzeit.model;
 
 import java.util.HashMap;
 
+
+/*
+*  adap-hw14 Describe three collaborations
+*
+*  For IndieGameManager and IndieGame Collaboration
+*
+*  collaboration: IndieGameManager / IndieGame Collaboration
+*  collaboration-type: Manager
+*  role: Manager
+*
+*  Purpose: Centralize object management in one place (from lecture slides)
+*
+*/
+
 public class IndieGameManager{
 
     /**
